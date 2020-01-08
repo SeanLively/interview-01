@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CSharp.Validation.Factory;
 
 namespace CSharp
 {
@@ -20,7 +16,9 @@ namespace CSharp
         /// <returns></returns>
         public static bool Validate(string licenseNumber, string stateCode)
         {
-            return false;
+            var validator = LicenseValidatorFactory.GetLicenseValidator(stateCode);
+            
+            return validator?.Validate(licenseNumber) ?? false;
         }
     }
 }

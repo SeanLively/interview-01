@@ -10,10 +10,19 @@ let licenseUtils = (function () {
     // Nebraska: 1Alpha+6-8Numeric
     // Mississippi: 9Numeric
 
+    var stateValidations = {
+        'MS': /^\d{9}$/,
+        "NE": /^[A-Za-z]\d{6,8}$/
+    };
+
     function validate(license, state) {
 
-        return null;
+        const validationRegex = stateValidations[state];
 
+        if (!validationRegex)
+            return false;
+
+        return !!validationRegex.exec(license);
     }
     return {
 

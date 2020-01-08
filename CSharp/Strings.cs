@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharp
 {
@@ -15,7 +13,9 @@ namespace CSharp
         /// <returns></returns>
         public static string Reverse1(string input)
         {
-            return null;
+            var chars = input.ToCharArray();
+            Array.Reverse(chars);
+            return new string(chars);
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace CSharp
         /// <returns></returns>
         public static string Reverse2(string input)
         {
-            return null;
+            return new string(input.Reverse().ToArray());
         }
 
 
@@ -37,7 +37,12 @@ namespace CSharp
         /// <returns></returns>
         public static string SafeTruncate(string input, int length)
         {
-            return null;
+            if (string.IsNullOrEmpty(input))
+            {
+                return null;
+            }
+
+            return input.Length <= length ? input : input.Substring(0, length);
         }
 
         /// <summary>
@@ -47,7 +52,18 @@ namespace CSharp
         /// <returns></returns>
         public static List<int> EvenNumerics(List<string> input)
         {
-            return null;
+            var evenIntegers = new List<int>();
+
+            foreach (var testString in input)
+            {
+                if (!Int32.TryParse(testString, out int intResult))
+                    continue;
+
+                if (intResult % 2 == 0)
+                    evenIntegers.Add(intResult);
+            }
+
+            return evenIntegers;
         }
     }
 }
